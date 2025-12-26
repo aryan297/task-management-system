@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TasksCreateRouteImport } from './routes/tasks.create'
 import { Route as TasksTaskIdRouteImport } from './routes/tasks.$taskId'
+import { Route as TasksTaskIdIndexRouteImport } from './routes/tasks.$taskId.index'
 import { Route as TasksTaskIdEditRouteImport } from './routes/tasks.$taskId.edit'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const TasksTaskIdRoute = TasksTaskIdRouteImport.update({
   path: '/tasks/$taskId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TasksTaskIdIndexRoute = TasksTaskIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TasksTaskIdRoute,
+} as any)
 const TasksTaskIdEditRoute = TasksTaskIdEditRouteImport.update({
   id: '/edit',
   path: '/edit',
@@ -40,12 +46,13 @@ export interface FileRoutesByFullPath {
   '/tasks/$taskId': typeof TasksTaskIdRouteWithChildren
   '/tasks/create': typeof TasksCreateRoute
   '/tasks/$taskId/edit': typeof TasksTaskIdEditRoute
+  '/tasks/$taskId/': typeof TasksTaskIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tasks/$taskId': typeof TasksTaskIdRouteWithChildren
   '/tasks/create': typeof TasksCreateRoute
   '/tasks/$taskId/edit': typeof TasksTaskIdEditRoute
+  '/tasks/$taskId': typeof TasksTaskIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,18 +60,25 @@ export interface FileRoutesById {
   '/tasks/$taskId': typeof TasksTaskIdRouteWithChildren
   '/tasks/create': typeof TasksCreateRoute
   '/tasks/$taskId/edit': typeof TasksTaskIdEditRoute
+  '/tasks/$taskId/': typeof TasksTaskIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tasks/$taskId' | '/tasks/create' | '/tasks/$taskId/edit'
+  fullPaths:
+    | '/'
+    | '/tasks/$taskId'
+    | '/tasks/create'
+    | '/tasks/$taskId/edit'
+    | '/tasks/$taskId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tasks/$taskId' | '/tasks/create' | '/tasks/$taskId/edit'
+  to: '/' | '/tasks/create' | '/tasks/$taskId/edit' | '/tasks/$taskId'
   id:
     | '__root__'
     | '/'
     | '/tasks/$taskId'
     | '/tasks/create'
     | '/tasks/$taskId/edit'
+    | '/tasks/$taskId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,6 +110,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TasksTaskIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tasks/$taskId/': {
+      id: '/tasks/$taskId/'
+      path: '/'
+      fullPath: '/tasks/$taskId/'
+      preLoaderRoute: typeof TasksTaskIdIndexRouteImport
+      parentRoute: typeof TasksTaskIdRoute
+    }
     '/tasks/$taskId/edit': {
       id: '/tasks/$taskId/edit'
       path: '/edit'
@@ -108,10 +129,12 @@ declare module '@tanstack/react-router' {
 
 interface TasksTaskIdRouteChildren {
   TasksTaskIdEditRoute: typeof TasksTaskIdEditRoute
+  TasksTaskIdIndexRoute: typeof TasksTaskIdIndexRoute
 }
 
 const TasksTaskIdRouteChildren: TasksTaskIdRouteChildren = {
   TasksTaskIdEditRoute: TasksTaskIdEditRoute,
+  TasksTaskIdIndexRoute: TasksTaskIdIndexRoute,
 }
 
 const TasksTaskIdRouteWithChildren = TasksTaskIdRoute._addFileChildren(

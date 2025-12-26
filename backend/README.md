@@ -96,3 +96,17 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+# psql -h localhost -U postgres -d task_management
+
+ docker run -d `
+>>   --name postgres17 `
+>>   -p 5432:5432 `
+>>   -e POSTGRES_USER=postgres `
+>>   -e POSTGRES_PASSWORD=StrongPassword123 `
+>>   -e POSTGRES_DB=mydb `
+>>   -v pgdata:/var/lib/postgresql/data `
+>>   postgres:17-alpine
+
+# CREATE DATABASE task_management;
+# docker exec -it postgres17 psql -U postgres
