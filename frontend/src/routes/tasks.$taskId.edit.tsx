@@ -160,6 +160,20 @@ function EditTask() {
                         />
                     </div>
 
+                    <FormField
+                        control={form.control}
+                        name="due_date"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Due Date (Optional)</FormLabel>
+                                <FormControl>
+                                    <Input type="date" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
                     <Button type="submit" disabled={loading}>
                         {loading ? 'Updating...' : 'Update Task'}
                     </Button>
