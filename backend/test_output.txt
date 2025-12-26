@@ -1,0 +1,37 @@
+﻿TAP version 13
+# C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\node_modules\\typeorm\\decorator\\src\\decorator\\columns\\Column.ts:192
+#                 throw new ColumnTypeUndefinedError(object, propertyName)
+#                       ^
+# ColumnTypeUndefinedError: Column type for Task\#title is not defined and cannot be guessed. Make sure you have turned on an "emitDecoratorMetadata": true option in tsconfig.json. Also make sure you have imported "reflect-metadata" on top of the main entry file in your application (before any entity imported).If you are using JavaScript instead of TypeScript you must explicitly provide a column type.
+#     at <anonymous> (C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\node_modules\\typeorm\\decorator\\src\\decorator\\columns\\Column.ts:192:23)
+#     at __decorateClass (C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\src\\modules\\tasks\\domain\\task.entity.ts:2:949)
+#     at TaskPriority (C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\src\\modules\\tasks\\domain\\task.entity.ts:22:5)
+#     at Object.<anonymous> (C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\src\\modules\\tasks\\domain\\task.entity.ts:17:14)
+#     at Module._compile (node:internal/modules/cjs/loader:1730:14)
+#     at Object.transformer (C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs:3:1104)
+#     at Module.load (node:internal/modules/cjs/loader:1465:32)
+#     at Function._load (node:internal/modules/cjs/loader:1282:12)
+#     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+#     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+# Node.js v22.16.0
+# Subtest: tests\\unit\\services\\createTask.service.test.ts
+not ok 1 - tests\\unit\\services\\createTask.service.test.ts
+  ---
+  duration_ms: 1992.0629
+  type: 'test'
+  location: 'C:\\Users\\aryan\\Desktop\\practice\\test\\task-management-app\\backend\\tests\\unit\\services\\createTask.service.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2000.5417
